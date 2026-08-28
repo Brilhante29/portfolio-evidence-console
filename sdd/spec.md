@@ -1,63 +1,37 @@
-# Spec: portfolio-evidence-console
+# #32 Portfolio Evidence Console Specification
 
-## Number
+## Problem
 
-`#32`
+The portfolio has durable benchmark artifacts and a read-only GraphQL evidence
+API, but a reviewer cannot quickly scan projects, compare compatible runs, or
+inspect provenance from one public interface.
 
-## Claim
+## Users And Workflows
 
-Este projeto prova que:
+1. A recruiter scans verified runs, technologies, latency, throughput, and
+   failure status without learning the storage model.
+2. An engineer filters by project/status, selects two runs, and sees whether
+   their comparability keys permit a valid delta.
+3. A reviewer opens a run and verifies source commit, image digest, workload,
+   command, and environment.
+4. A maintainer switches from deterministic fixture mode to the published
+   GraphQL API with one environment variable.
 
-> <one sentence claim>
+## Acceptance Criteria
 
-## User-visible output
+- The first screen is the working evidence dashboard, not a landing page.
+- Initial evidence is server-rendered; filters and selection remain responsive
+  client-side and URL-addressable routes own details/comparison.
+- GraphQL responses are validated before entering the domain.
+- Fixture and GraphQL repositories obey the same capability-specific port.
+- The default Docker path needs no secret or external service.
+- Desktop and mobile views have no overlap, clipped labels, or layout shift.
+- Tests prove domain/application behavior without React, Next.js, or network.
+- A real-browser benchmark records interaction p95, LCP, CLS, and bundle bytes.
 
-- Docker command:
-- README opens with:
-- Benchmark table:
+## Non-Goals
 
-## Scope
-
-In:
-
-- <feature>
-
-Out:
-
-- <explicit non-goal>
-
-## Architecture
-
-```txt
-client -> api/cli -> domain -> adapters -> storage/model
-```
-
-## Benchmark
-
-Primary metric:
-
-- name:
-- target:
-- command:
-- result file:
-
-Secondary metrics:
-
-- name:
-- target:
-
-## Dataset or fixture
-
-- source:
-- size:
-- license:
-- deterministic seed:
-
-## Definition of done
-
-- [ ] Docker command works from clean clone.
-- [ ] README starts with project number and benchmark result.
-- [ ] Benchmark command writes JSON result.
-- [ ] Tests cover core behavior.
-- [ ] `REFERENCES.md` explains reuse.
-- [ ] No secret or paid credential required for default demo.
+- No evidence mutation, publication approval, authentication, broker, database,
+  cloud adapter, or hidden BFF business logic.
+- No comparison across different `comparabilityKey` values.
+- No global state or GraphQL cache until measured workflow complexity requires it.

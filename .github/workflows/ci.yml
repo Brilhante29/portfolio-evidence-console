@@ -1,0 +1,51 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  NEXT_TELEMETRY_DISABLED: '1'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - run: npm run benchmark:calibrate
+      - run: npm run audit:dependencies
+      - run: python -m pip install -r requirements-validation.lock PyYAML==6.0.3
+      - shell: pwsh
+        run: ./tools/validate-project.ps1 -SkipDocker
+
+      - run: docker build --tag portfolio-evidence-console:ci .
+      - name: Smoke test container
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run -d --name portfolio-evidence-console -p 3000:3000 portfolio-evidence-console:ci
+          trap 'docker logs portfolio-evidence-console; docker rm -f portfolio-evidence-console' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:3000/api/health; then
+              exit 0
+            fi
+            sleep 1
+          done
+          exit 1

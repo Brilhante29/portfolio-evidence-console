@@ -4,33 +4,24 @@ Project: `32 - portfolio-evidence-console`
 
 ## Review Points
 
-- [ ] after scaffold
-- [ ] after architecture decision
+- [x] after scaffold
+- [x] after architecture decision
 - [ ] after first working slice
 - [ ] after benchmark result
 - [ ] before publication
-- [ ] after CI failure, if applicable
+- [ ] after CI or validation failure
 
 ## Findings
 
-| Finding | Classification | Kit Area | Action | Status |
-|---|---|---|---|---|
-|  | `patch_now|backlog|reject` | `decision-brain|docs|templates|sdd|harness|metrics|contracts|skills|validation` |  | pending |
-
-## Patch Now Decisions
-
--
-
-## Backlog Decisions
-
--
-
-## Rejected Improvements
-
--
+| Finding                                               | Classification | Kit Area       | Action                                                  | Status   |
+| ----------------------------------------------------- | -------------- | -------------- | ------------------------------------------------------- | -------- |
+| Next.js profile exists but no mirrored frontend skill | patch_now      | skills         | Promote proven routing, state, contract, and test rules | pending  |
+| Generator has no Node/Next Docker or CI template      | patch_now      | templates      | Extract only after #32 proves the implementation        | pending  |
+| Shared tokens are README-oriented, not CSS-ready      | patch_now      | design-system  | Generate stable web tokens without app-specific layout  | pending  |
+| Apollo/Redux would add unused runtime state           | reject         | decision-brain | Keep server reads and page-local state                  | rejected |
 
 ## Final Gate
 
-- [ ] Reusable improvements were patched or recorded.
-- [ ] Project-specific implementation was not moved into the kit.
-- [ ] Validation reflects any repeated mistake discovered during the project.
+- [ ] Reusable improvements are patched or recorded.
+- [x] Project-specific product code remains outside the kit.
+- [x] Rejected infrastructure has an explicit problem-force gate.

@@ -2,26 +2,37 @@ id: 32
 name: portfolio-evidence-console
 manifest_version: 2
 program:
-  id: <ai-evaluation-retrieval|applied-computer-vision|backend-reliability-platform|mlops-data-platform|delivery-observability-infra>
-  narrative_fit: <how this repo strengthens the program story>
+  id: portfolio-evidence-platform
+  narrative_fit: Turns the verified evidence API into a public, inspectable comparison and reproducibility product.
   shared_assets:
-    - <program-level reusable asset>
-status: scaffold
-claim: <one sentence claim>
-stack: []
+    - benchmark-result-v2
+    - portfolio-evidence-graphql
+    - portfolio-design-tokens
+status: implementing
+claim: Renders, filters, compares, and explains verified benchmark evidence through a responsive public console without coupling UI state to GraphQL transport details.
+stack:
+  - nodejs-24
+  - typescript-6
+  - nextjs-16
+  - react-19
+  - graphql
+  - echarts-6
+  - zod-4
+  - lucide-react
+  - vitest-4
+  - playwright-1.62
+  - docker
 language_profile:
-  primary: <python|java|kotlin|go|typescript|angular|nextjs|terraform|kotlin-jvm|java-spring-backend|spring-kotlin-backend|fastapi-backend|go-backend|node-typescript-backend>
-  secondary: []
-  reason: <why this profile governs the repo>
-# JVM stacks must add the schema-required jvm block from decision-brain/jvm-language-matrix.yaml.
-# Kafka stacks must add messaging_decision and kafka_streams fields from decision-brain/kafka-streams-matrix.yaml.
+  primary: nextjs
+  secondary: [typescript]
+  reason: The product needs server rendering for the initial evidence view, rich client filtering/comparison, typed contracts, and browser performance proof.
 decision_brain:
   agentic_spec:
     source: .portfolio/decision-brain/agentic-spec-governance.yaml
     spec_store: portfolio-reuse-kit
     schema: portfolio-system
     project_config: openspec/config.yaml
-    component_pack: <default-portfolio-project|ai-evaluation-retrieval|applied-computer-vision|backend-reliability-platform|mlops-data-platform|delivery-observability-infra>
+    component_pack: default-portfolio-project
     artifact_graph:
       - intent->portfolio-impact->architecture-record
       - architecture-record+portfolio-impact->component-pack
@@ -30,53 +41,68 @@ decision_brain:
     mode: principal-agent-orchestrated
     source: .portfolio/decision-brain/agent-graph.yaml
     handoff: sdd/agent-handoff.md
-    local_first_runtime: docker+kumo-when-cloud-behavior-is-needed
+    local_first_runtime: docker
   reuse_improvement_loop:
     source: .portfolio/decision-brain/reuse-improvement-loop.yaml
     review_path: sdd/reuse-improvement-review.md
-    current_status: pending
+    current_status: active
   principles:
-    coupling_rule: <domain/use cases do not depend on framework, database, broker, cloud SDK, transport, or UI>
+    coupling_rule: Domain models and application services know neither Next.js, React, GraphQL fetch, browser APIs, nor fixture files.
     solid: [srp, ocp, lsp, isp, dip]
-    simplicity_rule: <KISS/YAGNI rule for this repo>
-    testability_rule: <how use cases run without transport/infrastructure>
+    simplicity_rule: Use one Next.js deployable, one GraphQL read port, and URL-addressable views; reject client state libraries and a BFF until measured complexity requires them.
+    testability_rule: Filtering, summaries, comparison, and repository contracts run in Node without React, Next.js, network access, or a browser.
     rejected_overengineering:
-      - <pattern/tool/abstraction rejected>
-  stack_profile: <kotlin-jvm|kafka-streams|spring-kotlin-backend|java-spring-backend|fastapi-backend|go-backend|node-typescript-backend|angular|nextjs|python-ml|terraform>
-  api_style: <rest-http|graphql|grpc|websocket|sse|cli>
-  messaging: <none|outbox-only|rabbitmq|kafka|redis-streams|nats>
+      - global state library for page-local filters and two-run selection
+      - GraphQL client cache for a read-only dataset loaded on the server
+      - mutation support in a public evidence console
+      - microfrontend split without independent teams or deployments
+  stack_profile: nextjs
+  api_style: graphql
+  messaging: none
   cloud:
-    mode: <none|kumo-local-first|adapter-fake|real-cloud-required>
+    mode: none
     local_provider: kumo
-    real_provider_target: <aws|none|other>
+    real_provider_target: none
     emulated_services: []
-    adapter_rule: <ports/adapters keep cloud SDK outside domain/use cases>
-    config_switch: CLOUD_PROVIDER=kumo|aws
-    unsupported_behaviors: []
-  database: <postgresql|sqlite|redis|qdrant|duckdb|none|other>
-  runtime: <runtime decision>
-  library_policy: <why selected libs fit the problem and benchmark>
+    adapter_rule: No cloud capability exists; future asset hosting must enter behind a capability port and prove Kumo locally before AWS.
+    config_switch: not-applicable-no-cloud-port
+    unsupported_behaviors:
+      - authenticated publication commands
+      - remote object storage
+  database: none
+  runtime: nodejs-24
+  library_policy: Next.js App Router provides SSR and route boundaries; ECharts proves dense comparison visualization; Zod validates the GraphQL boundary; Lucide supplies accessible icons; Playwright measures real browser workflows.
   record_path: sdd/technical-decision.md
   rejected_options:
-    - option: <alternative stack/broker/api/cloud/library>
-      reason: <why it was not chosen>
+    - option: Apollo Client
+      reason: Server-side reads and page-local interaction do not justify normalized client caching or another runtime state layer.
+    - option: REST aggregation
+      reason: The published GraphQL read contract already matches nested dashboard and comparison reads.
+    - option: Angular
+      reason: Angular is reserved for the audited operations console whose command-heavy workflows benefit from facades and typed forms.
 architecture:
-  style: <mvc|layered|modular-monolith|clean-architecture|hexagonal|cqrs-event-sourcing|event-driven|mvvm|pipeline|serverless|microservices>
-  reason: <why this problem and benchmark fit this architecture>
+  style: mvvm
+  reason: The product has rich filter, selection, chart, and comparison state while domain evidence and transport adapters must remain replaceable.
   problem_forces:
-    domain_complexity: <low|medium|high>
-    integration_pressure: <low|medium|high>
-    ui_state_complexity: <none|low|medium|high>
-    data_or_ml_reproducibility: <low|medium|high>
-    auditability: <low|medium|high>
-    throughput_or_async: <low|medium|high>
-    independent_deployability: <low|medium|high>
-  dependency_rule: <dependency direction rule>
+    domain_complexity: medium
+    integration_pressure: medium
+    ui_state_complexity: high
+    data_or_ml_reproducibility: high
+    auditability: medium
+    throughput_or_async: low
+    independent_deployability: medium
+  dependency_rule: Views depend on typed view models; application services depend on an EvidenceRepository port; only infrastructure adapters import GraphQL fetch or fixtures.
   boundaries:
-    - <module/layer/context boundary>
+    - evidence domain and comparison rules
+    - dashboard and detail application services
+    - GraphQL and fixture repository adapters
+    - Next.js server route composition
+    - React view models and views
   rejected_alternatives:
-    - style: <alternative>
-      reason: <why it was not chosen>
+    - style: mvc
+      reason: Controller-oriented organization does not make rich client view state and transport substitution explicit.
+    - style: microfrontends
+      reason: One product, one team, and one deployment do not justify runtime composition or duplicated design systems.
 design_system:
   tokens: design-system/tokens.yaml
   readme_components:
@@ -86,12 +112,11 @@ design_system:
     - references_table
   diagram_required: true
 reuse:
-  kit_version: local
+  kit_version: contract-set-1.9.0
   uses:
     - catalog
     - programs
     - proficiency-map
-    - component-packs
     - openspec-schema
     - decision-brain
     - agent-graph
@@ -103,14 +128,15 @@ reuse:
     - harness
     - templates
     - skills
+    - contracts
 benchmark:
-  primary_metric: <metric>
-  unit: <unit>
-  command: pending
-  result_path: benchmarks/results/*.json
-  publication_result_path: pending
+  primary_metric: filter_to_chart_p95_ms
+  unit: ms
+  command: npm run benchmark
+  result_path: benchmarks/results/latest.json
+  publication_result_path: benchmarks/publication/latest.json
 release:
-  docker: pending
+  docker: node24-non-root-multi-stage
   no_secret_default_path: true
   readme_has_number: true
   references_documented: true

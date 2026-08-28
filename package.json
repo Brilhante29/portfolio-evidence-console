@@ -1,0 +1,47 @@
+{
+  "name": "portfolio-evidence-console",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node tools/prepare-standalone.mjs",
+    "start": "next start",
+    "lint": "eslint src tests benchmarks eslint.config.mjs next.config.ts playwright.config.ts vitest.config.ts",
+    "typecheck": "tsc --noEmit",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "capture:screenshots": "node tools/capture-screenshots.mjs",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build",
+    "benchmark": "node benchmarks/run.mjs",
+    "benchmark:calibrate": "node benchmarks/run.mjs --calibrate",
+    "audit:dependencies": "npm audit --audit-level=high --omit=dev"
+  },
+  "dependencies": {
+    "echarts": "6.1.0",
+    "lucide-react": "1.35.0",
+    "next": "16.3.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "4.5.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@testing-library/react": "16.3.3",
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
+    "@vitest/coverage-v8": "4.1.11",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.3",
+    "prettier": "3.9.6",
+    "typescript": "6.0.3",
+    "vitest": "4.1.11"
+  }
+}

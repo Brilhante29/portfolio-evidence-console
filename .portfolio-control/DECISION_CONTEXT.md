@@ -1,77 +1,35 @@
 # Decision Context: #32 portfolio-evidence-console
 
-This file is a compact, reviewable context card for agents continuing work on
-this project. It records rationale and evidence links, not private
-chain-of-thought. Keep volatile status in `.portfolio-control/CURRENT_HANDOFF.md`
-and generate mechanical state in `.portfolio-control/CONTINUITY_STATE.md`.
+This file exposes reviewable rationale and evidence, never private chain-of-thought.
 
 ## Objective
 
-- Program: _pending_
-- Claim: _pending_
-- Primary benchmark: _pending_
-- Definition of done: _pending_
-
-## Decision Chain
-
-```text
-problem and proof target
-  -> problem forces
-  -> architecture
-  -> dependency boundaries and principles
-  -> language/framework profile
-  -> API style
-  -> messaging
-  -> local-first/cloud mode
-  -> database and libraries
-  -> benchmark and release evidence
-```
+- Program: Portfolio Evidence Platform
+- Claim: verified evidence is useful as a product, not only as JSON artifacts.
+- Primary benchmark: browser filter input to ECharts `finished`, p95 in milliseconds.
+- Done: no-secret Docker path, tests/build/E2E/visual/benchmark evidence, exact-head CI, and kit feedback.
 
 ## Recorded Decisions
 
 | Decision | Selected option | Evidence | Revisit trigger |
 |---|---|---|---|
-| Architecture | _pending_ | `sdd/architecture-decision.md` | _pending_ |
-| Stack | _pending_ | `project.yaml`, `sdd/technical-decision.md` | _pending_ |
-| API style | _pending_ | contract and decision record | _pending_ |
-| Messaging | none until justified | `sdd/technical-decision.md` | async semantics become required |
-| Cloud/local-first | Docker; Kumo when AWS-like behavior exists | adapter contract and parity tests | _pending_ |
-| Database/runtime | _pending_ | technical decision and tests | _pending_ |
-| Libraries | _pending_ | `REFERENCES.md` and technical decision | _pending_ |
+| Architecture | modular monolith, MVVM-style vertical slices | `sdd/architecture-decision.md` | independent teams/deployments or view-state coupling appears |
+| Runtime | Node 24, Next.js 16, React 19 | build and browser workflow | support/performance regression |
+| Language/tooling | TypeScript 6.0.3, ESLint 9.39.5 | tested peer compatibility | Next lint stack accepts next major |
+| API | read-only GraphQL through `EvidenceRepository` | nested evidence contract | command workflow or caching force appears |
+| State | SSR initial read plus page-local React state | small UI state surface | cross-route durable state becomes measurable |
+| Messaging/storage/cloud | none | no async, persistence, or provider capability | a real requirement appears; AWS parity starts with Kumo |
 
-## Boundary And Principle Checks
+## Boundary Checks
 
-- [ ] Domain and application policy do not import framework or infrastructure.
-- [ ] Ports are owned by the policy boundary; adapters depend inward.
-- [ ] SRP, OCP, LSP, ISP, and DIP are visible in modules and tests.
-- [ ] KISS, YAGNI, DRY, Law of Demeter, and testability are applied without speculative abstractions.
-- [ ] Local and real adapters preserve the same contract and failure semantics.
-
-## Evidence State
-
-- [ ] Docker default path works without a paid secret.
-- [ ] Tests or smoke checks pass.
-- [ ] Benchmark command is reproducible.
-- [ ] Benchmark JSON matches the shared contract.
-- [ ] README opens with number, claim, and measured result.
-- [ ] `REFERENCES.md` records external patterns and licenses honestly.
-- [ ] Reuse-improvement review is complete.
-- [ ] Current-head CI evidence exists before publication.
+- [x] Domain and application policy import no React, Next, GraphQL, browser, or fixture code.
+- [x] Fixture and GraphQL adapters satisfy the application-owned read port.
+- [x] Zod validates untrusted transport shapes at the adapter boundary.
+- [x] SRP, OCP, LSP, ISP, DIP, KISS, YAGNI, and Law of Demeter are reflected in code and tests.
+- [x] Speculative broker, database, BFF, auth, global state, and cloud layers were rejected.
 
 ## Handoff
 
-- Current status: _pending_
-- Blocker and required authorization: _none / pending_
-- Dirty files to preserve: _none / list_
-- Last verified command: _pending_
-- Exact next action: _pending_
-
-## Reuse Improvement
-
-Classify every kit improvement as one of:
-
-- `patch_now`: low-risk and clearly reusable
-- `backlog`: useful but needs broader design
-- `reject`: project-specific, premature, duplicated, or harmful
-
-Record the classification and evidence in `sdd/reuse-improvement-review.md`.
+- Current status: source commit must be created, then full benchmark runs on a clean tree.
+- Last verified: build, 14 tests with coverage, 6 E2E workflows, visual canvas/overflow checks, benchmark calibration.
+- Exact next action: commit implementation and run `npm run benchmark` before editing evidence documents.

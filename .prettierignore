@@ -1,0 +1,14 @@
+.next
+coverage
+node_modules
+playwright-report
+test-results
+contracts/*.json
+.portfolio
+.portfolio-control
+.claude
+.codex
+contracts
+design-system
+AGENTS.md
+CLAUDE.md

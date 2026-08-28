@@ -1,67 +1,31 @@
 # Agent Handoff
 
-Project: `32 - portfolio-evidence-console`
+Updated: 2026-08-28
 
-## Principal Agent Summary
+## Objective
 
-- Objective:
-- Portfolio program:
-- Public proof claim:
-- Primary benchmark:
-- Default runnable path:
+Publish #32 as the public read experience for the Portfolio Evidence Platform.
 
-## Subagent Decisions
+## Current State
 
-| Role | Decision | Evidence Path | Status |
-|---|---|---|---|
-| `program-planner` |  | `project.yaml`, `sdd/spec.md` | pending |
-| `architecture-selector` |  | `sdd/architecture-decision.md` | pending |
-| `engineering-principles-reviewer` |  | `project.yaml`, `sdd/technical-decision.md` | pending |
-| `stack-decision-agent` |  | `project.yaml`, `sdd/technical-decision.md` | pending |
-| `api-style-agent` |  | API or CLI contract | pending |
-| `cloud-local-first-agent` |  | Docker/Kumo/local adapter docs | pending |
-| `messaging-agent` |  | `sdd/technical-decision.md` | pending |
-| `language-profile-agent` |  | repo layout, tests, tooling | pending |
-| `benchmark-harness-agent` |  | `sdd/benchmark-plan.md`, `benchmarks/results/` | pending |
-| `design-system-agent` |  | `README.md`, diagrams | pending |
-| `security-reuse-reviewer` |  | `REFERENCES.md`, release checklist | pending |
-| `release-ci-publisher` |  | validation and CI | pending |
+- Status: implementing from a reuse-kit scaffold.
+- Producer contract: `portfolio-evidence-api` main `88fa375`.
+- Architecture: MVVM-style vertical slices with `EvidenceRepository` port.
+- Runtime: Node 24 Docker; fixture mode is the no-secret default.
 
-## Local-First Runtime
+## Required Gates
 
-- Docker command:
-- Local services:
-- Kumo services, if any:
-- Real cloud adapter target, if any:
-- Config switch:
-- Default path requires paid secret: no
+1. Complete dashboard, comparison, detail, filters, responsive navigation, and
+   explicit fixture/live source state.
+2. Pass typecheck, lint, unit tests, production build, Playwright desktop/mobile,
+   Docker health, and benchmark calibration.
+3. Create a clean-source browser benchmark and immutable V2 evidence.
+4. Publish with exact-head CI, align Desktop, then promote only generic frontend
+   reuse improvements to `portfolio-reuse-kit`.
 
-## Architecture Boundaries
+## Do Not
 
-- Domain boundaries:
-- Use-case boundaries:
-- Ports:
-- Adapters:
-- Dependency direction rule:
-
-## Benchmark Handoff
-
-- Metric:
-- Unit:
-- Higher or lower is better:
-- Command:
-- Result path:
-- Dataset or fixture:
-
-## Open Risks
-
--
-
-## Publication Gates
-
-- [ ] Docker path works
-- [ ] benchmark result exists
-- [ ] README starts with number, claim, and benchmark
-- [ ] references are documented
-- [ ] no secret in files or git remote
-- [ ] validation passes
+- Do not add mutations, Apollo, Redux, database, broker, Kumo, AWS, or auth
+  without a measured product force.
+- Do not modify #31's API to hide a frontend modeling problem.
+- Do not claim Lighthouse/interaction numbers before a real browser run.

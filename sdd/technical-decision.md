@@ -1,120 +1,37 @@
-# Technical Decision
+# Technical Decisions
 
-## Status
+## Rendering And State
 
-Proposed
+- Next.js App Router server-renders the initial list and run/comparison routes.
+- Client state is limited to filters, active tab, and two-run selection.
+- Query parameters make filter and comparison routes shareable.
 
-## Decision Type
+## Contracts
 
-`<stack|api-style|cloud|messaging|database|library|runtime|framework>`
+- GraphQL is read-only because the UI needs nested evidence, metrics, workload,
+  and provenance in one request.
+- Zod validates adapter responses. Mapping converts GraphQL enum casing at one
+  boundary rather than leaking transport shapes into views.
+- Fixture mode implements the same repository port and is labeled in the UI.
 
-## Context
+## Libraries
 
-Project: `<project-name>`
-Problem: `<problem to solve>`
-Portfolio program: `<program>`
-Public signal: `<GitHub/LinkedIn proficiency signal>`
-Benchmark: `<metric>`
+- TypeScript 6.0.3: latest compiler line accepted by the Next.js ESLint toolchain;
+  TypeScript 7.0.2 was tested and rejected because `typescript-eslint` fails fast
+  against its unsupported compiler API.
+- ESLint 9.39.5: newest major accepted by Next's React, import, and accessibility
+  plugins; ESLint 10.9.1 was rejected after peer-contract warnings.
+- ECharts: dense metric visualization and a measurable chart completion event.
+- Lucide React: consistent accessible interface icons.
+- Vitest: fast domain/application contract tests.
+- Playwright: end-to-end workflows, screenshots, and browser performance entries.
 
-## Selected Option
+## SOLID And Simplicity
 
-Selected: `<option>`
-
-Reason:
-
-`<Why this option fits the problem, benchmark, and public signal.>`
-
-## Decision Brain Fields
-
-- Stack profile: `<spring-kotlin-backend|fastapi-backend|go-backend|node-typescript-backend|angular|nextjs|python-ml|terraform>`
-- API style: `<rest-http|graphql|grpc|websocket|sse|cli>`
-- Messaging: `<none|outbox-only|rabbitmq|kafka|redis-streams|nats>`
-- Cloud mode: `<none|kumo-local-first|adapter-fake|real-cloud-required>`
-- Database/runtime: `<selection>`
-- Library policy: `<selection>`
-
-## Engineering Principles
-
-Coupling boundary:
-
-`<Domain/use cases must not depend on framework, DB, broker, cloud SDK, transport, or UI.>`
-
-SOLID application:
-
-- SRP: `<how responsibilities are split>`
-- OCP: `<how behavior extends without rewriting stable policy>`
-- LSP: `<how adapters/fakes/reals stay substitutable>`
-- ISP: `<small ports/interfaces used>`
-- DIP: `<high-level policy depends on abstractions>`
-
-Simplicity:
-
-- KISS: `<simplest design that proves the claim>`
-- YAGNI: `<future abstraction intentionally not added>`
-- DRY: `<duplicated business knowledge removed without premature abstraction>`
-
-Testability evidence:
-
-- `<use case test without transport/infrastructure>`
-- `<adapter or contract test>`
-## Rejected Options
-
-| Option | Why rejected |
-|---|---|
-| `<option>` | `<reason>` |
-| `<option>` | `<reason>` |
-
-## API Contract
-
-Contract artifact:
-
-`<OpenAPI|GraphQL schema|protobuf|event contract|CLI output schema|none>`
-
-GraphQL controls, when applicable:
-
-- Query complexity/depth limit: `<yes|no|not applicable>`
-- N+1 prevention: `<DataLoader/batching plan|not applicable>`
-- Field-level auth rule: `<yes|no|not applicable>`
-
-## Cloud Local-First
-
-Local provider:
-
-`<kumo|none|adapter fake>`
-
-Real provider target:
-
-`<aws|none|other>`
-
-Config switch:
-
-```txt
-CLOUD_PROVIDER=<kumo|aws|none>
-CLOUD_ENDPOINT=http://localhost:4566
-```
-
-Unsupported local behaviors:
-
-- `<behavior or none>`
-
-## Benchmark Impact
-
-Expected impact:
-
-- `<metric/result this decision should improve or clarify>`
-
-Validation command:
-
-```powershell
-<command>
-```
-
-## Operational Cost
-
-- Docker services added: `<none|kumo|postgres|redis|rabbitmq|redpanda|...>`
-- Local demo complexity: `<low|medium|high>`
-- Failure case required: `<yes|no>`
-
-## Follow-up
-
-- `<what must be revisited if benchmark fails>`
+- SRP: queries, mapping, summaries, comparisons, and views have separate reasons
+  to change.
+- OCP/LSP: new evidence sources implement `EvidenceRepository` without changing
+  application services; fixture and GraphQL adapters share observable semantics.
+- ISP/DIP: the UI depends on read capabilities only, never the complete API.
+- KISS/YAGNI: no mutation, client cache, state library, BFF, broker, database,
+  cloud adapter, or microfrontend split.

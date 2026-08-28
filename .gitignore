@@ -8,9 +8,13 @@ node_modules/
 .terraform/
 coverage/
 benchmarks/results/*.json
+!benchmarks/results/latest.json
 dist/
 /target/
 /build/
+*.tsbuildinfo
 .env
 .env.*
 !.env.example
+playwright-report/
+test-results/

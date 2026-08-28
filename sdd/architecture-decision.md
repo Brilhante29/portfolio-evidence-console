@@ -1,69 +1,30 @@
-# Architecture Decision
+# ADR-001: MVVM-Style Vertical Slices Over A GraphQL Read Port
 
-## Status
-
-Proposed
+Status: accepted
 
 ## Context
 
-Project: `<project-name>`
-Claim: `<measurable claim>`
-Benchmark: `<primary metric>`
-
-Problem forces:
-
-- Domain complexity: `<low|medium|high>`
-- Integration pressure: `<low|medium|high>`
-- UI state complexity: `<low|medium|high|none>`
-- Data/ML reproducibility: `<low|medium|high>`
-- Auditability/event history: `<low|medium|high>`
-- Throughput/async pressure: `<low|medium|high>`
-- Independent deployability need: `<low|medium|high>`
+The console combines SSR, filters, selection, charts, run details, and
+comparison state. The evidence transport must remain replaceable and the public
+product must never acquire mutation responsibilities.
 
 ## Decision
 
-Chosen architecture: `<style>`
+Use MVVM-style vertical slices. Domain evidence and comparison rules are pure;
+application services depend on `EvidenceRepository`; GraphQL and fixtures are
+adapters; Next.js routes compose server reads; React hooks/components own view
+state only.
 
-Reason:
+## Dependency Rule
 
-`<Explain why this architecture fits the actual problem and benchmark.>`
+Dependencies point from Next.js/React and infrastructure toward application and
+domain. Domain and application modules import no framework, fetch API, browser
+API, environment variable, or fixture file.
 
-Dependency rule:
+## Rejected
 
-`<Example: domain/application do not depend on infra; adapters depend inward through ports.>`
-
-## Rejected Alternatives
-
-| Alternative | Why rejected |
-|---|---|
-| `<style>` | `<reason>` |
-| `<style>` | `<reason>` |
-
-## Folder Layout
-
-```txt
-src/
-  <folders>
-test/
-benchmarks/
-```
-
-## Testing Strategy
-
-- Unit tests: `<what is isolated>`
-- Integration tests: `<what is wired>`
-- Benchmark: `<what proves the claim>`
-
-## Consequences
-
-Positive:
-
-- `<benefit>`
-
-Tradeoffs:
-
-- `<cost>`
-
-Migration path:
-
-- `<how to evolve if the problem grows>`
+- MVC: it obscures rich view-state ownership and transport substitution.
+- Apollo Client: normalized caching is not justified by server reads and a
+  bounded read-only dataset.
+- Microfrontends: no independent team or deployment boundary exists.
+- Angular: reserved for #33's command-heavy operations workflows.

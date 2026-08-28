@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "route": "/",
+  "viewport": { "width": 1440, "height": 1000 },
+  "filter": "portfolio-evidence-api",
+  "warmup_iterations": 5,
+  "measured_iterations": 30,
+  "concurrency": 1
+}
