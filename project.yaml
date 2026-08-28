@@ -8,7 +8,7 @@ program:
     - benchmark-result-v2
     - portfolio-evidence-graphql
     - portfolio-design-tokens
-status: benchmarked
+status: published
 claim: Renders, filters, compares, and explains verified benchmark evidence through a responsive public console without coupling UI state to GraphQL transport details.
 stack:
   - nodejs-24
@@ -45,7 +45,7 @@ decision_brain:
   reuse_improvement_loop:
     source: .portfolio/decision-brain/reuse-improvement-loop.yaml
     review_path: sdd/reuse-improvement-review.md
-    current_status: active
+    current_status: complete
   principles:
     coupling_rule: Domain models and application services know neither Next.js, React, GraphQL fetch, browser APIs, nor fixture files.
     solid: [srp, ocp, lsp, isp, dip]

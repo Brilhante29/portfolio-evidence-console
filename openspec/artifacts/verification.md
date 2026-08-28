@@ -12,7 +12,8 @@
 - `npm run benchmark`: 41.72 ms p95 over 30 interactions; LCP 372 ms; CLS 0.0859; 318,437 bytes; zero failures; clean source `f887d21`
 - `docker build`: runtime image `sha256:626d5a6ba263476a9e463957ac18046e7773bda6a3974298fb1c7d62fbb01049`; non-root `nextjs`; health `healthy`; `/api/health` returned `ok`
 - `python tools/validate-publication.py --require-git`: V2 schema, artifact parity, metric failures, and committed provenance passed
+- GitHub Actions: release-candidate commit `c13f203` passed run `33217199932`
 
-## Pending Release Evidence
+## Publication Evidence
 
-- Published exact-head GitHub Actions
+The final immutable head and its exact CI run are maintained in the `portfolio-reuse-kit` publication registry, avoiding a self-referential metadata commit.

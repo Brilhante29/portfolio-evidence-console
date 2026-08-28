@@ -9,4 +9,4 @@
 - [x] `REFERENCES.md` records dependencies, inspiration, and licenses.
 - [x] Default mode needs no secret or external service.
 - [x] Reuse review is complete.
-- [ ] GitHub Actions is green on the published SHA.
+- [x] GitHub Actions release-candidate run `33217199932` is green; final exact-head proof is recorded centrally.

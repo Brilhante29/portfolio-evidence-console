@@ -8,10 +8,12 @@ Publish #32 as the public read experience for the Portfolio Evidence Platform.
 
 ## Current State
 
-- Status: release candidate; local gates and reuse promotion complete, remote publication pending.
+- Status: published; local gates, reuse promotion, and release-candidate CI are complete.
 - Producer contract: `portfolio-evidence-api` main `88fa375`.
 - Architecture: MVVM-style vertical slices with `EvidenceRepository` port.
 - Runtime: Node 24 Docker; fixture mode is the no-secret default.
+- Remote: `https://github.com/Brilhante29/portfolio-evidence-console`.
+- Release-candidate proof: commit `c13f203`, CI run `33217199932`.
 
 ## Required Gates
 

@@ -9,4 +9,4 @@
 - [x] Docker image build and health smoke pass as non-root `nextjs`.
 - [x] Benchmark V2 comes from a clean source commit and validates.
 - [x] Reuse findings are promoted or explicitly recorded.
-- [ ] Published head has green GitHub Actions with no runtime annotation.
+- [x] Publication candidate has green GitHub Actions; the central publication record pins the final exact head.
