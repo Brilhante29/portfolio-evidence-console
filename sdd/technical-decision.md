@@ -21,6 +21,8 @@
   against its unsupported compiler API.
 - ESLint 9.39.5: newest major accepted by Next's React, import, and accessibility
   plugins; ESLint 10.9.1 was rejected after peer-contract warnings.
+- npm install scripts are denied by default; the resolver's reviewed
+  `unrs-resolver@1.12.2` postinstall is the only version-pinned approval.
 - ECharts: dense metric visualization and a measurable chart completion event.
 - Lucide React: consistent accessible interface icons.
 - Vitest: fast domain/application contract tests.

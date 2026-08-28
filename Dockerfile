@@ -1,6 +1,10 @@
 # syntax=docker/dockerfile:1.7
 FROM node:24-bookworm-slim AS dependencies
-ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_TELEMETRY_DISABLED=1 \
+    NPM_CONFIG_AUDIT=false \
+    NPM_CONFIG_FUND=false \
+    NPM_CONFIG_LOGLEVEL=error \
+    NPM_CONFIG_UPDATE_NOTIFIER=false
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -15,8 +19,8 @@ ENV NODE_ENV=production \
     HOSTNAME=0.0.0.0 \
     PORT=3000
 WORKDIR /app
-RUN groupadd --system --gid 1001 nodejs \
-    && useradd --system --uid 1001 --gid nodejs nextjs
+RUN groupadd --gid 1001 nodejs \
+    && useradd --uid 1001 --gid nodejs --no-create-home --no-log-init --shell /usr/sbin/nologin nextjs
 COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
 USER nextjs
@@ -33,3 +37,5 @@ ENV BENCHMARK_SOURCE_COMMIT=${SOURCE_COMMIT} \
     NEXT_TELEMETRY_DISABLED=1
 RUN npx playwright install --with-deps chromium
 CMD ["npm", "run", "benchmark"]
+
+FROM runtime AS final

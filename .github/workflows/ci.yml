@@ -9,6 +9,10 @@ permissions:
   contents: read
 
 env:
+  NPM_CONFIG_AUDIT: 'false'
+  NPM_CONFIG_FUND: 'false'
+  NPM_CONFIG_LOGLEVEL: error
+  NPM_CONFIG_UPDATE_NOTIFIER: 'false'
   NEXT_TELEMETRY_DISABLED: '1'
 
 jobs:

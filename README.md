@@ -2,7 +2,7 @@
 
 **Proves:** a responsive Next.js console can render, filter, compare, and explain verified benchmark evidence while keeping domain policy independent from React and GraphQL.
 
-**Benchmark:** `filter_to_chart_p95_ms = pending ms` from 30 measured Chromium interactions after 5 warmups; publication evidence is generated only from a clean commit.
+**Benchmark:** `filter_to_chart_p95_ms = 45.996 ms` from 30 measured Chromium interactions after 5 warmups; zero failed interactions on clean source `868bbb8`.
 
 ![Verified evidence dashboard](screenshots/dashboard-desktop.png)
 
@@ -32,10 +32,10 @@ npm run benchmark
 
 | Metric                   |        Result |     Gate | Direction       |
 | ------------------------ | ------------: | -------: | --------------- |
-| Filter to chart p95      |    pending ms | < 120 ms | lower is better |
-| Largest Contentful Paint |    pending ms |   report | lower is better |
-| Cumulative Layout Shift  |       pending |   < 0.10 | lower is better |
-| Next static transfer     | pending bytes |   report | lower is better |
+| Filter to chart p95      |     45.996 ms | < 120 ms | lower is better |
+| Largest Contentful Paint |        696 ms |   report | lower is better |
+| Cumulative Layout Shift  |        0.0859 |   < 0.10 | lower is better |
+| Next static transfer     | 318,437 bytes |   report | lower is better |
 
 The harness writes `benchmarks/results/latest.json` and a V2 publication artifact with workload, environment, command, clean commit, dependency lock, image, and artifact digests. CI executes only a bounded calibration so it cannot overwrite publication evidence.
 

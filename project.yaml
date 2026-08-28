@@ -8,7 +8,7 @@ program:
     - benchmark-result-v2
     - portfolio-evidence-graphql
     - portfolio-design-tokens
-status: implementing
+status: benchmarked
 claim: Renders, filters, compares, and explains verified benchmark evidence through a responsive public console without coupling UI state to GraphQL transport details.
 stack:
   - nodejs-24
@@ -61,7 +61,7 @@ decision_brain:
   messaging: none
   cloud:
     mode: none
-    local_provider: kumo
+    local_provider: none
     real_provider_target: none
     emulated_services: []
     adapter_rule: No cloud capability exists; future asset hosting must enter behind a capability port and prove Kumo locally before AWS.
@@ -131,6 +131,7 @@ reuse:
     - contracts
 benchmark:
   primary_metric: filter_to_chart_p95_ms
+  evidence_status: current
   unit: ms
   command: npm run benchmark
   result_path: benchmarks/results/latest.json
