@@ -1,0 +1,175 @@
+{
+  "assets": {
+    "backend-reliability-platform.yaml": {
+      "bytes": 2948,
+      "sha256": "sha256:67cd63bb67a12e1fb6e661add1ce1c862138da92298f743cf42fbdc6fd36272d"
+    },
+    "benchmark-result-v2.schema.json": {
+      "bytes": 3741,
+      "sha256": "sha256:821a16388913afb19fe70e37256138528126ed6fa14ef06f74191f5608e86c7a"
+    },
+    "benchmark-result.schema.json": {
+      "bytes": 746,
+      "sha256": "sha256:7df83b5774b363ff6b23a902595c50a5d34a89e66866d898a9dac43fb807a9de"
+    },
+    "ci-profile-v1.schema.json": {
+      "bytes": 3033,
+      "sha256": "sha256:4356148c50b0c8500a2ecd87fd409cde0982e45df21057626ea5d1b416dbc94f"
+    },
+    "commerce-event-v1.schema.json": {
+      "bytes": 1006,
+      "sha256": "sha256:fdb16ccca3e0bb63d9e0ea2ffed729f2022022d6a4460a7157302bb2a279ace8"
+    },
+    "execution-event.schema.json": {
+      "bytes": 1988,
+      "sha256": "sha256:c7a8cc93670344aca800aeabe0f4afd25466df8944717bd916c59d0f51508cbb"
+    },
+    "fixtures/benchmark-result-v2.invalid.json": {
+      "bytes": 175,
+      "sha256": "sha256:daec8daaea1b53a23b80c8101a29954e5811e6fcaa9a9952150904e08aeef3e3"
+    },
+    "fixtures/benchmark-result-v2.valid.json": {
+      "bytes": 1749,
+      "sha256": "sha256:0074aeacec5abbc6d5938d6ae330160865d5d866237df0ae76d0425b27e1da2e"
+    },
+    "fixtures/ci-profile-v1.invalid.json": {
+      "bytes": 754,
+      "sha256": "sha256:c542023cd5776185aeefb11a3b90d8845656fbf401cbbc5305cfca12195f78ea"
+    },
+    "fixtures/ci-profile-v1.valid.json": {
+      "bytes": 988,
+      "sha256": "sha256:f6e4b1d96eb91dcff31cb9fb702acf17878079708b560356a99959915142330a"
+    },
+    "fixtures/k6-load-curve-v1.invalid.json": {
+      "bytes": 938,
+      "sha256": "sha256:a0ce4a75c27b7ea8775ff396fcf234bbe0cd8d37aa203ca9fa2ef0802ce083f5"
+    },
+    "fixtures/k6-load-curve-v1.valid.json": {
+      "bytes": 938,
+      "sha256": "sha256:18d7402c80f2ce3f5a69a882719a8ed9777f68e70af1e6a63e1aca2e84acdc4e"
+    },
+    "fixtures/medical-evaluation-report-v1.invalid.json": {
+      "bytes": 1216,
+      "sha256": "sha256:1ded277145982ab2bace8958fe9fc2351f1eff8c6cc1699d055043a15647af0b"
+    },
+    "fixtures/medical-evaluation-report-v1.valid.json": {
+      "bytes": 1583,
+      "sha256": "sha256:0665c207f1de86fa8d1ad89d041638fe9e5a3be9424977ba61b5bcffea31c1be"
+    },
+    "fixtures/observability-evidence-v1.invalid.json": {
+      "bytes": 2470,
+      "sha256": "sha256:9965af2de193db5be3a913590dc46760b42f4729b408c4bcca33ffcec32e3064"
+    },
+    "fixtures/observability-evidence-v1.valid.json": {
+      "bytes": 2545,
+      "sha256": "sha256:8cde3a46a75697bea4e97ea06f1a43b5b3710238d6ef13570a06d365f7d9e4e5"
+    },
+    "fixtures/portfolio-audit.valid.json": {
+      "bytes": 2017,
+      "sha256": "sha256:cb123086c3b2d52b74a096796ab34f53ee12ea198582da00e12edb21858e3190"
+    },
+    "fixtures/project.invalid.json": {
+      "bytes": 11193,
+      "sha256": "sha256:c919848407d2eaa974eb461239d6bdab826919f16b0c9d8c585f999c7e79827a"
+    },
+    "fixtures/project.jvm-profile-missing-jvm.invalid.json": {
+      "bytes": 10255,
+      "sha256": "sha256:1b8e3968d8cba729b6bc241e43be05a2ba6d43a792abce275eb9a133a8bb5a21"
+    },
+    "fixtures/project.kafka-mode-mismatch.invalid.json": {
+      "bytes": 11193,
+      "sha256": "sha256:61ac0124f62414961f20e261a25e6d4d1c6461b23404c432abd1717454fe3ae0"
+    },
+    "fixtures/project.kafka-selected-brain-none.invalid.json": {
+      "bytes": 7409,
+      "sha256": "sha256:28908f67fd9172faf316f5dbcc8c28f7d6c2faf78fc110b64027df719cbe352b"
+    },
+    "fixtures/project.kafka-streams-orphan.invalid.json": {
+      "bytes": 10404,
+      "sha256": "sha256:45ef251f2098ce568db7c30df8b3393f623053e7c30d3e95c225997edfaff0e9"
+    },
+    "fixtures/project.legacy.valid.json": {
+      "bytes": 5097,
+      "sha256": "sha256:fc7994fd04769a7b1a8bcabc665a179eb01515b0bfe81ff42b3932db8ec11f58"
+    },
+    "fixtures/project.non-jvm.valid.json": {
+      "bytes": 6373,
+      "sha256": "sha256:193e920ae1f80f337fa3a941c9a1294384fc1c2989e803b5c7d379c7760496b1"
+    },
+    "fixtures/project.unknown-wrapper-checksum.invalid.json": {
+      "bytes": 11195,
+      "sha256": "sha256:24635cbc590d30d144e8dc1b995471a7d5f20042855b1e8697035ecb7efb228a"
+    },
+    "fixtures/project.valid.json": {
+      "bytes": 11195,
+      "sha256": "sha256:09c04f9bfbf63b58d5afcc59044b0431ca16a0eb8a7c8e1b6a1a850518560608"
+    },
+    "fixtures/project.wrapper-pair-mismatch.invalid.json": {
+      "bytes": 11193,
+      "sha256": "sha256:9a40ded483840249752f97e81d8c9b78466f72c0e46940aa63a143530188a85e"
+    },
+    "fixtures/terraform-kumo-lifecycle-v1.invalid.json": {
+      "bytes": 1171,
+      "sha256": "sha256:452b16f94ea0a60768a74771a7b537071a474bbf5bdfc06db6d4b85bda1bd128"
+    },
+    "fixtures/terraform-kumo-lifecycle-v1.valid.json": {
+      "bytes": 1385,
+      "sha256": "sha256:4e50873eff4f44429d4f63cf1987b515fd44d08e9ec8a5dd04b0af61c0b81a70"
+    },
+    "k6-load-curve-v1.schema.json": {
+      "bytes": 2969,
+      "sha256": "sha256:efc66dd57a32dc3053a13b2aea7c9ab0756ec9edcf44b6d129b3eec1d54af36f"
+    },
+    "medical-evaluation-report-v1.schema.json": {
+      "bytes": 4321,
+      "sha256": "sha256:9a8489f0732b396239d1e53e854a68f6eb3873c25d7a3c1d08d8401f5faf08d1"
+    },
+    "mlops-data-platform.yaml": {
+      "bytes": 3476,
+      "sha256": "sha256:f81ee6e324cbd7b157041a830714de20cf646f71aa6fecaa68011485c735cd73"
+    },
+    "monitoring-batch.schema.json": {
+      "bytes": 3643,
+      "sha256": "sha256:57d164746035d9bc70c30643070840b982c0098f1fed6f4d97c6f17877ab09e7"
+    },
+    "observability-evidence-v1.schema.json": {
+      "bytes": 4987,
+      "sha256": "sha256:449fde8b79d1a1e67c7776784aafaa13a21f80d2818fc851473a4fac21a17f1e"
+    },
+    "portfolio-evidence.graphql": {
+      "bytes": 1937,
+      "sha256": "sha256:197a2b067f7a4482c3cab553bb127accc0ba8c27df443f76a8e8611a445e4d09"
+    },
+    "portfolio-evidence.openapi.yaml": {
+      "bytes": 6048,
+      "sha256": "sha256:cc92dab0c92e95e7ce19feb396706f3d9456a611bbf0704d11c4d4ea20a3583a"
+    },
+    "prediction-artifact.schema.json": {
+      "bytes": 1390,
+      "sha256": "sha256:113a6bd9783e9a9bbcd66812e1a3c76972fd29d9dc5688dad1277874668deaae"
+    },
+    "producer-lock.schema.json": {
+      "bytes": 827,
+      "sha256": "sha256:409d0e63cf46963deea9f6d09295923093d40dab43dceb1cf51dfe9af64a7f2e"
+    },
+    "project.schema.json": {
+      "bytes": 25274,
+      "sha256": "sha256:c2eeda74d2fe0f34e35f8b0458355c02b57fab53a2c44f511a8d6a3678a6cfc8"
+    },
+    "publication-evidence.schema.json": {
+      "bytes": 983,
+      "sha256": "sha256:4a69fe3b65b66dde595216d1014e210545a62db3c4d1bcdcf6d2dd1fe42373a3"
+    },
+    "terraform-kumo-lifecycle-v1.schema.json": {
+      "bytes": 4404,
+      "sha256": "sha256:25817ef20f4ab9286f90b37ff751b81b71fefe06c4f8711d8f13aa2e6502aed3"
+    },
+    "validated-batch-manifest-v1.schema.json": {
+      "bytes": 2458,
+      "sha256": "sha256:21e591d26eab411000b3dca54ea4349c860aafb3e320db50ecb1cadeb0e2cb52"
+    }
+  },
+  "contract_set": "portfolio-interoperability",
+  "contract_set_version": "1.9.0",
+  "schema_version": 1
+}

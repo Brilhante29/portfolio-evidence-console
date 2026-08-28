@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfolio.local/contracts/terraform-kumo-lifecycle-v1.schema.json",
+  "title": "Terraform Kumo lifecycle evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "fixture_version",
+    "project",
+    "metric",
+    "value",
+    "unit",
+    "timestamp",
+    "command",
+    "repeat",
+    "warmup",
+    "samples",
+    "metrics",
+    "summary",
+    "execution",
+    "environment",
+    "operations",
+    "compatibility_diagnostics"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "fixture_version": { "type": "string", "minLength": 1 },
+    "project": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,62}$" },
+    "metric": { "const": "kumo_apply_seconds" },
+    "value": { "type": "number", "exclusiveMinimum": 0 },
+    "unit": { "const": "seconds" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "command": { "type": "string", "minLength": 1 },
+    "repeat": { "type": "integer", "minimum": 3 },
+    "warmup": { "type": "integer", "minimum": 1 },
+    "samples": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "type": "number", "exclusiveMinimum": 0 }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["destroy_seconds", "resource_parity"],
+      "properties": {
+        "destroy_seconds": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "number", "exclusiveMinimum": 0 }
+        },
+        "resource_parity": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "const": 1.0 }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "apply_min_seconds",
+        "apply_median_seconds",
+        "apply_max_seconds",
+        "destroy_median_seconds"
+      ],
+      "properties": {
+        "apply_min_seconds": { "type": "number", "exclusiveMinimum": 0 },
+        "apply_median_seconds": { "type": "number", "exclusiveMinimum": 0 },
+        "apply_max_seconds": { "type": "number", "exclusiveMinimum": 0 },
+        "destroy_median_seconds": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duration_seconds", "failures"],
+      "properties": {
+        "duration_seconds": { "type": "number", "exclusiveMinimum": 0 },
+        "failures": { "const": 0 }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "os",
+        "architecture",
+        "python",
+        "terraform",
+        "kumo",
+        "aws_provider",
+        "adapter",
+        "aws_credentials_required"
+      ],
+      "properties": {
+        "os": { "type": "string", "minLength": 1 },
+        "architecture": { "type": "string", "minLength": 1 },
+        "python": { "type": "string", "pattern": "^3\\.[0-9]+\\.[0-9]+$" },
+        "terraform": { "type": "string", "pattern": "^Terraform v[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "kumo": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "aws_provider": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "adapter": { "const": "kumo" },
+        "aws_credentials_required": { "const": false }
+      }
+    },
+    "operations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resources_per_apply", "resource_counts", "apply_cycles", "destroy_cycles"],
+      "properties": {
+        "resources_per_apply": { "type": "integer", "minimum": 1 },
+        "resource_counts": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "integer", "minimum": 1 }
+        },
+        "apply_cycles": { "type": "integer", "minimum": 3 },
+        "destroy_cycles": { "type": "integer", "minimum": 3 }
+      }
+    },
+    "compatibility_diagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kumo_used", "aws_provider_loaded", "shared_module_with_aws", "aws_conformance_claim"],
+      "properties": {
+        "kumo_used": { "const": true },
+        "aws_provider_loaded": { "const": true },
+        "shared_module_with_aws": { "const": true },
+        "aws_conformance_claim": { "const": false }
+      }
+    }
+  }
+}

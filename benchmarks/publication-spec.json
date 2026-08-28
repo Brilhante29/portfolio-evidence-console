@@ -1,0 +1,16 @@
+{
+  "project": "portfolio-evidence-console",
+  "benchmark_id": "pending",
+  "primary_metric": "pending",
+  "v1_path": "benchmarks/results/baseline.json",
+  "v2_path": "benchmarks/publication/baseline-v2.json",
+  "config_path": "benchmarks/config/workload-v1.json",
+  "fixture_path": "fixtures",
+  "lock_path": "requirements.txt",
+  "repeat": 1,
+  "measured_iterations": 1,
+  "warmup_iterations": 0,
+  "concurrency": 1,
+  "comparability_key": "pending",
+  "readme_values": []
+}

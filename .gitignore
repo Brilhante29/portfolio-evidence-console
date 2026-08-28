@@ -1,0 +1,16 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+.gradle/
+node_modules/
+.next/
+.terraform/
+coverage/
+benchmarks/results/*.json
+dist/
+/target/
+/build/
+.env
+.env.*
+!.env.example

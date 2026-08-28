@@ -1,0 +1,4 @@
+interface:
+  display_name: "Terraform Kumo Lifecycle"
+  short_description: "Prove local Terraform apply/destroy through Kumo"
+  default_prompt: "Use the Terraform Kumo lifecycle contract to design, execute, and publish this repository's local-first infrastructure proof."

@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfolio.local/contracts/observability-evidence-v1.schema.json",
+  "title": "Correlated observability evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project",
+    "benchmark",
+    "runs",
+    "signal_correlation_rate",
+    "profiles",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "project": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,62}$" },
+    "benchmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric", "unit", "samples", "median"],
+      "properties": {
+        "metric": { "const": "incident_recovery_seconds" },
+        "unit": { "const": "seconds" },
+        "samples": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "number", "exclusiveMinimum": 0 }
+        },
+        "median": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "runs": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "incident_id",
+          "lifecycle_statuses",
+          "detection_seconds",
+          "recovery_seconds",
+          "trace_ids",
+          "signals"
+        ],
+        "properties": {
+          "incident_id": { "type": "string", "minLength": 8 },
+          "lifecycle_statuses": { "const": [200, 503, 200] },
+          "detection_seconds": { "type": "number", "minimum": 0 },
+          "recovery_seconds": { "type": "number", "exclusiveMinimum": 0 },
+          "trace_ids": {
+            "type": "array",
+            "minItems": 3,
+            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^[0-9a-f]{32}$" }
+          },
+          "signals": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["metrics", "traces", "logs"],
+            "properties": {
+              "metrics": { "const": true },
+              "traces": { "const": true },
+              "logs": { "const": true }
+            }
+          }
+        }
+      }
+    },
+    "signal_correlation_rate": { "const": 1.0 },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence", "exploration"],
+      "properties": {
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "clock",
+            "volume_strategy",
+            "app_non_root",
+            "collector_non_root",
+            "benchmark_non_root",
+            "result_copy_required"
+          ],
+          "properties": {
+            "clock": { "const": "monotonic" },
+            "volume_strategy": { "const": "named-volume" },
+            "app_non_root": { "const": true },
+            "collector_non_root": { "const": true },
+            "benchmark_non_root": { "const": true },
+            "result_copy_required": { "const": true }
+          }
+        },
+        "exploration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["backends", "health", "navigation"],
+          "properties": {
+            "backends": { "const": ["prometheus", "tempo", "loki", "grafana"] },
+            "health": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["app", "prometheus", "tempo", "loki", "grafana"],
+              "properties": {
+                "app": { "const": true },
+                "prometheus": { "const": true },
+                "tempo": { "const": true },
+                "loki": { "const": true },
+                "grafana": { "const": true }
+              }
+            },
+            "navigation": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["metric_to_trace", "trace_to_logs", "dashboard_provisioned"],
+              "properties": {
+                "metric_to_trace": { "const": true },
+                "trace_to_logs": { "const": true },
+                "dashboard_provisioned": { "const": true }
+              }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_commit",
+        "image_digest",
+        "dependency_lock_digest",
+        "checkout_fetch_depth",
+        "exact_head_ci_run_url"
+      ],
+      "properties": {
+        "source_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "image_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "dependency_lock_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "checkout_fetch_depth": { "const": 0 },
+        "exact_head_ci_run_url": {
+          "type": "string",
+          "pattern": "^https://github.com/.+/actions/runs/[0-9]+$"
+        }
+      }
+    }
+  }
+}

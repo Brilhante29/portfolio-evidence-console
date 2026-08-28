@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfolio.local/contracts/k6-load-curve-v1.schema.json",
+  "title": "Reusable k6 multi-run load curve",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["project", "metric", "value", "unit", "repeat", "samples", "failures", "summary", "environment", "curve", "runs"],
+  "properties": {
+    "project": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "metric": { "const": "p95_ms_at_max_vus" },
+    "value": { "type": "number", "exclusiveMinimum": 0 },
+    "unit": { "const": "ms" },
+    "repeat": { "type": "integer", "minimum": 2 },
+    "samples": { "type": "array", "minItems": 2, "items": { "type": "number", "exclusiveMinimum": 0 } },
+    "failures": { "const": 0 },
+    "summary": {
+      "type": "object",
+      "required": ["levels", "repeats", "max_vus", "total_requests", "error_rate"],
+      "properties": {
+        "levels": { "type": "integer", "minimum": 2 },
+        "repeats": { "type": "integer", "minimum": 2 },
+        "max_vus": { "type": "integer", "minimum": 1 },
+        "total_requests": { "type": "integer", "minimum": 1 },
+        "error_rate": { "const": 0 }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "required": ["k6_image", "sample_seconds"],
+      "properties": {
+        "k6_image": { "type": "string", "pattern": "^grafana/k6:[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "sample_seconds": { "type": "string", "pattern": "^[1-9][0-9]*$" }
+      }
+    },
+    "curve": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/aggregatePoint" }
+    },
+    "runs": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repeat", "curve"],
+        "properties": {
+          "repeat": { "type": "integer", "minimum": 1 },
+          "curve": {
+            "type": "array",
+            "minItems": 2,
+            "items": { "$ref": "#/$defs/runPoint" }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "runPoint": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["vus", "requests", "p95_ms", "error_rate"],
+      "properties": {
+        "vus": { "type": "integer", "minimum": 1 },
+        "requests": { "type": "integer", "minimum": 1 },
+        "p95_ms": { "type": "number", "exclusiveMinimum": 0 },
+        "error_rate": { "const": 0 }
+      }
+    },
+    "aggregatePoint": {
+      "allOf": [
+        { "$ref": "#/$defs/runPoint" },
+        {
+          "type": "object",
+          "required": ["requests_per_second", "p95_samples_ms"],
+          "properties": {
+            "requests_per_second": { "type": "number", "exclusiveMinimum": 0 },
+            "p95_samples_ms": {
+              "type": "array",
+              "minItems": 2,
+              "items": { "type": "number", "exclusiveMinimum": 0 }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

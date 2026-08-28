@@ -1,0 +1,4 @@
+interface:
+  display_name: "Observability Evidence Harness"
+  short_description: "Prove correlated metrics, traces, and logs"
+  default_prompt: "Use the observability evidence contract to design, run, and verify this repository's incident proof."

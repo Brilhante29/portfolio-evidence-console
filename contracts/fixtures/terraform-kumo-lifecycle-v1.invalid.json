@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "fixture_version": "2.0.0",
+  "project": "terraform-aws-baseline",
+  "metric": "kumo_apply_seconds",
+  "value": 11.2,
+  "unit": "seconds",
+  "timestamp": "2026-08-21T04:59:00Z",
+  "command": "terraform plan",
+  "repeat": 3,
+  "warmup": 0,
+  "samples": [11.2, 11.3, 11.1],
+  "metrics": {
+    "destroy_seconds": [14.2, 14.3, 14.1],
+    "resource_parity": [1.0, 0.75, 1.0]
+  },
+  "summary": {
+    "apply_min_seconds": 11.1,
+    "apply_median_seconds": 11.2,
+    "apply_max_seconds": 11.3,
+    "destroy_median_seconds": 14.2
+  },
+  "execution": { "duration_seconds": 100.0, "failures": 1 },
+  "environment": {
+    "os": "Linux-x86_64",
+    "architecture": "x86_64",
+    "python": "3.12.14",
+    "terraform": "Terraform v1.15.8",
+    "kumo": "0.28.1",
+    "aws_provider": "5.100.0",
+    "adapter": "fake",
+    "aws_credentials_required": true
+  },
+  "operations": {
+    "resources_per_apply": 4,
+    "resource_counts": [4, 3, 4],
+    "apply_cycles": 3,
+    "destroy_cycles": 2
+  },
+  "compatibility_diagnostics": {
+    "kumo_used": false,
+    "aws_provider_loaded": true,
+    "shared_module_with_aws": false,
+    "aws_conformance_claim": true
+  }
+}
