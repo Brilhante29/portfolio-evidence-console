@@ -8,5 +8,5 @@
 - [x] Production standalone, desktop/mobile E2E, and visual canvas/overflow checks pass.
 - [x] Docker image build and health smoke pass as non-root `nextjs`.
 - [x] Benchmark V2 comes from a clean source commit and validates.
-- [ ] Reuse findings are promoted or explicitly recorded.
+- [x] Reuse findings are promoted or explicitly recorded.
 - [ ] Published head has green GitHub Actions with no runtime annotation.

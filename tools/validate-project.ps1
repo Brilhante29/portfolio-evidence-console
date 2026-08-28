@@ -301,7 +301,12 @@ try {
   if (Test-Path -LiteralPath $srcRoot -PathType Container) {
     $pythonFiles = @(Get-ChildItem -Path $srcRoot -Recurse -Filter *.py -File)
   }
-  if ($pythonFiles.Count -gt 0) {
+  $testsRoot = Join-Path $root "tests"
+  $pythonTests = @()
+  if (Test-Path -LiteralPath $testsRoot -PathType Container) {
+    $pythonTests = @(Get-ChildItem -Path $testsRoot -Recurse -Filter *.py -File)
+  }
+  if ($pythonFiles.Count -gt 0 -or $pythonTests.Count -gt 0) {
     $pythonCommand = Get-Command python -ErrorAction SilentlyContinue
     if ($pythonCommand) {
       $previousPythonPath = $env:PYTHONPATH
@@ -310,11 +315,8 @@ try {
       } else {
         $env:PYTHONPATH = $srcRoot
       }
-      Invoke-Checked "python compile src" { python -m compileall -q $srcRoot }
-      $testsRoot = Join-Path $root "tests"
-      $pythonTests = @()
-      if (Test-Path -LiteralPath $testsRoot -PathType Container) {
-        $pythonTests = @(Get-ChildItem -Path $testsRoot -Recurse -Filter *.py -File)
+      if ($pythonFiles.Count -gt 0) {
+        Invoke-Checked "python compile src" { python -m compileall -q $srcRoot }
       }
       if ($pythonTests.Count -gt 0) {
         Invoke-Checked "python compile tests" { python -m compileall -q $testsRoot }

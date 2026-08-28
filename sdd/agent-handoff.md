@@ -8,7 +8,7 @@ Publish #32 as the public read experience for the Portfolio Evidence Platform.
 
 ## Current State
 
-- Status: implementing from a reuse-kit scaffold.
+- Status: release candidate; local gates and reuse promotion complete, remote publication pending.
 - Producer contract: `portfolio-evidence-api` main `88fa375`.
 - Architecture: MVVM-style vertical slices with `EvidenceRepository` port.
 - Runtime: Node 24 Docker; fixture mode is the no-secret default.
@@ -20,8 +20,8 @@ Publish #32 as the public read experience for the Portfolio Evidence Platform.
 2. Pass typecheck, lint, unit tests, production build, Playwright desktop/mobile,
    Docker health, and benchmark calibration.
 3. Create a clean-source browser benchmark and immutable V2 evidence.
-4. Publish with exact-head CI, align Desktop, then promote only generic frontend
-   reuse improvements to `portfolio-reuse-kit`.
+4. Publish with exact-head CI and align Desktop. Generic frontend improvements
+   are already proven in `portfolio-reuse-kit` at `ad5df96`.
 
 ## Do Not
 

@@ -6,4 +6,4 @@
 - Secondary evidence: LCP, CLS, and transferred Next static bytes.
 - Provenance: V2 result records clean commit, fixture/config/lock/artifact digests and environment.
 
-Publication passed on clean source `868bbb870ee30558791ae0c78d1e74ce7bf4c60a`: 45.996 ms filter-to-chart p95, 696 ms LCP, 0.0859 CLS, 318,437 transferred bytes, and zero failed interactions. The complete samples and digests are in `benchmarks/publication/latest.json`.
+Publication passed on clean source `f887d2143013cdbd586a7fc4a29709d2726bc7b0`: 41.72 ms filter-to-chart p95, 372 ms LCP, 0.0859 CLS, 318,437 transferred bytes, and zero failed interactions. The runtime image digest is `sha256:626d5a6ba263476a9e463957ac18046e7773bda6a3974298fb1c7d62fbb01049`; complete samples and provenance are in `benchmarks/publication/latest.json`.

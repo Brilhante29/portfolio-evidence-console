@@ -8,5 +8,5 @@
 - [x] README opens with project number, claim, result, and one Docker path.
 - [x] `REFERENCES.md` records dependencies, inspiration, and licenses.
 - [x] Default mode needs no secret or external service.
-- [ ] Reuse review is complete.
+- [x] Reuse review is complete.
 - [ ] GitHub Actions is green on the published SHA.

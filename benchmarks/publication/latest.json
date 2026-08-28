@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "run_id": "1fe12b91-2cc2-4883-a2d2-ccfe86e06206",
+  "run_id": "b38be3e3-ff50-4c53-a696-17c8554ec366",
   "project": "portfolio-evidence-console",
   "benchmark_id": "filter-chart-browser-v1",
   "workload": {
@@ -14,28 +14,28 @@
   "metrics": [
     {
       "name": "filter_to_chart_p95_ms",
-      "value": 45.996,
+      "value": 41.72,
       "unit": "ms",
       "direction": "lower_is_better",
       "samples": [
-        34.656, 32.796, 34.041, 32.466, 70.188, 38.523, 45.996, 28.205, 34.342, 32.827, 36.155,
-        30.591, 33.396, 32.896, 34.174, 32.185, 32.962, 34.942, 32.132, 34.581, 34.086, 31.15,
-        34.264, 32.892, 33.192, 32.555, 33.634, 33.736, 33.667, 32.28
+        32.458, 33.669, 33.75, 32.664, 34.43, 32.324, 42.729, 41.72, 33.381, 31.93, 34.216, 32.288,
+        32.536, 33.537, 33.742, 35.541, 35.412, 29.355, 34.414, 31.661, 34.125, 33.954, 32.165,
+        33.555, 34.212, 31.639, 34.482, 33.163, 33.331, 32.067
       ],
       "failures": 0,
       "summary": {
-        "p50": 33.396,
-        "p95": 45.996,
-        "min": 28.205,
-        "max": 70.188
+        "p50": 33.537,
+        "p95": 41.72,
+        "min": 29.355,
+        "max": 42.729
       }
     },
     {
       "name": "largest_contentful_paint_ms",
-      "value": 696,
+      "value": 372,
       "unit": "ms",
       "direction": "lower_is_better",
-      "samples": [696],
+      "samples": [372],
       "failures": 0,
       "summary": {}
     },
@@ -60,8 +60,8 @@
   ],
   "execution": {
     "command": "npm run benchmark",
-    "started_at": "2026-08-28T21:46:40.437Z",
-    "duration_seconds": 3.302,
+    "started_at": "2026-08-28T21:59:52.211Z",
+    "duration_seconds": 2.95,
     "exit_code": 0,
     "repeat": 1
   },
@@ -73,13 +73,13 @@
     "browser": "151.0.7922.34"
   },
   "provenance": {
-    "source_commit": "868bbb870ee30558791ae0c78d1e74ce7bf4c60a",
+    "source_commit": "f887d2143013cdbd586a7fc4a29709d2726bc7b0",
     "clean_tree": true,
-    "image_ref": "portfolio-evidence-console:benchmark",
-    "image_digest": "sha256:3cd0dd2f0bd6e7b488a56db9ad5bfc8d0bb835c3090ed162e07ffcaafebc7d65",
+    "image_ref": "portfolio-evidence-console:source-f887d21",
+    "image_digest": "sha256:626d5a6ba263476a9e463957ac18046e7773bda6a3974298fb1c7d62fbb01049",
     "dependency_lock_digest": "sha256:944029c7632a869532d2761aa0f0a9f53c8aae8d3192a97a44b769655603b4b0",
     "producer": "local",
-    "artifact_digest": "sha256:b9276cdc3acfa2ffd6fe99ceb1064643219f39a8e084fb2be06357f6875a74b7"
+    "artifact_digest": "sha256:175367b3150e2af4b0d18f70a3651c661541d92186cba054dd2cc610bd247770"
   },
   "comparability_key": "next16-echarts6-chromium-desktop-v1"
 }

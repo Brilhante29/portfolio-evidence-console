@@ -2,8 +2,8 @@
   "project": "portfolio-evidence-console",
   "benchmark_id": "filter-chart-browser-v1",
   "primary_metric": "filter_to_chart_p95_ms",
-  "v1_path": "benchmarks/results/latest.json",
-  "v2_path": "benchmarks/publication/latest.json",
+  "result_path": "benchmarks/results/latest.json",
+  "publication_path": "benchmarks/publication/latest.json",
   "config_path": "benchmarks/config/workload-v1.json",
   "fixture_path": "src/infrastructure/fixture-data.ts",
   "lock_path": "package-lock.json",
@@ -12,7 +12,7 @@
   "warmup_iterations": 5,
   "concurrency": 1,
   "comparability_key": "next16-echarts6-chromium-desktop-v1",
-  "readme_values": [
+  "readme_metrics": [
     "filter_to_chart_p95_ms",
     "largest_contentful_paint_ms",
     "cumulative_layout_shift",
