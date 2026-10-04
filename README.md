@@ -1,8 +1,10 @@
-# #32 portfolio-evidence-console
+# Portfolio Evidence Console: Verified Benchmark Evidence for Human Reviewers
 
-**Proves:** a responsive Next.js console can render, filter, compare, and explain verified benchmark evidence while keeping domain policy independent from React and GraphQL.
+**`filter_to_chart_p95_ms = 41.72 ms`** from 30 measured Chromium interactions after 5 warm-ups, with zero failed interactions on clean source `f887d21`. A responsive Next.js console renders, filters, compares, and explains verified benchmark evidence while domain policy stays independent from React and GraphQL.
 
-**Benchmark:** `filter_to_chart_p95_ms = 41.72 ms` from 30 measured Chromium interactions after 5 warmups; zero failed interactions on clean source `f887d21`.
+[![CI](https://github.com/Brilhante29/portfolio-evidence-console/actions/workflows/ci.yml/badge.svg)](https://github.com/Brilhante29/portfolio-evidence-console/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white) ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 
 ![Verified evidence dashboard](screenshots/dashboard-desktop.png)
 
@@ -83,3 +85,16 @@ This is a modular monolith with MVVM-style vertical slices. Domain formatting an
 The repository was generated and governed by [`portfolio-reuse-kit`](https://github.com/Brilhante29/portfolio-reuse-kit). Vendored contracts are checksum-pinned in `contracts/manifest.json`; project-specific views and domain policy remain here. Reusable findings are tracked in [`sdd/reuse-improvement-review.md`](sdd/reuse-improvement-review.md).
 
 See [`REFERENCES.md`](REFERENCES.md) for dependency licenses and reuse provenance.
+
+## How this repository is built
+
+Requirements and decisions live in [`sdd/`](sdd) and [`openspec/`](openspec), and [`project.yaml`](project.yaml) records the architecture, stack, and rejected alternatives. Development is AI-assisted and human-governed: [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](CLAUDE.md) hold the coding-agent instructions, while tests, validators, and CI decide what gets published.
+
+## Author
+
+**Guilherme Brilhante**, software engineer working on scalable backends and production AI.
+[LinkedIn](https://www.linkedin.com/in/guilhermefreirebrilhanteseveriano/) · [GitHub](https://github.com/Brilhante29) · [Publications](https://dblp.org/pid/353/6812.html)
+
+## License
+
+[MIT](LICENSE).
